@@ -1,0 +1,13 @@
+{
+  "name": "angular-meteor-base",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular-ui-router": "~0.2.15",
+    "angular-material": "master"
+  },
+  "ignoredDependencies": [
+    "jquery",
+    "angular"
+  ],
+  "private": true
+}
