@@ -21,3 +21,8 @@ mquandalle:bower
 planettraining:material-design-icons
 less
 255kb:meteor-status
+service-configuration
+accounts-facebook
+accounts-twitter
+wiseguyeh:accounts-azure-active-directory
+accounts-google
