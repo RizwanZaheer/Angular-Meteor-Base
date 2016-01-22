@@ -26,7 +26,8 @@ App.config([
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'client/views/home.html'
+        templateUrl: 'client/views/home.html',
+          controller: 'HomeCtrl'
       })
       .state('blog', {
         url: '/blog',
@@ -42,3 +43,57 @@ App.config([
       });
   }
 ]);
+
+
+App.controller('HomeCtrl', ['$scope', '$mdDialog', '$meteor', '$reactive','$mdToast',
+function ($scope, $mdDialog, $meteor, $reactive, $mdToast) {
+    $reactive(this).attach($scope);
+    $scope.subscribe('posts');
+    $scope.helpers({
+        posts: function () {
+            return Collections.Posts.find({});
+        }
+    });
+
+    $scope.showNewPostDialog = function (ev) {
+        $mdDialog.show({
+            targetEvent : ev,
+            controller: 'NewPostCtrl',
+            templateUrl: 'client/views/new-post-dialog.html',
+        })
+        .then(function (postId) {
+
+            if (postId) {
+                $mdToast.show($mdToast.simple().textContent('Post created!'));
+            }
+
+        }, function () {
+            debugger;
+            $scope.status = 'You cancelled the dialog.';
+        });
+    }
+}]);
+
+App.controller('NewPostCtrl', ['$scope','$mdDialog','$meteor','$reactive',
+function ($scope, $mdDialog, $meteor, $reactive) {
+    $reactive(this).attach($scope);
+
+    $scope.post = {};
+
+    $scope.helpers({
+        posts: function () {
+            return Collections.Posts.find({});
+        }
+    });
+
+    $scope.insertPost = function () {
+        var newPostId = Collections.Posts.insert($scope.post);
+        $scope.post = {};
+        $mdDialog.hide(newPostId);
+    }
+
+    $scope.closeDialog = function () {
+        $mdDialog.hide();
+    }
+}
+])

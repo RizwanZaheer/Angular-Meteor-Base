@@ -1,0 +1,30 @@
+<md-dialog>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>New Post</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <!--<md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>-->
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <form novalidate name="postForm">
+                    <md-input-container>
+                        <label>Title</label>
+                        <input ng-model="post.title" required>
+                    </md-input-container>
+                </form>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <span flex></span>
+            <md-button ng-click="closeDialog()">
+                Cancel
+            </md-button>
+            <md-button class="md-primary" ng-disabled="!postForm.$valid" ng-click="insertPost()">
+                Create
+            </md-button>
+        </md-dialog-actions>
+</md-dialog>
