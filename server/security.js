@@ -1,0 +1,1 @@
+﻿Collections.Posts.permit(['insert', 'update', 'remove']).apply();
