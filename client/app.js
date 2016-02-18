@@ -47,7 +47,6 @@ App.config([
 
 App.controller('HomeCtrl', ['$scope', '$mdDialog', '$meteor', '$reactive','$mdToast',
 function ($scope, $mdDialog, $meteor, $reactive, $mdToast) {
-    $reactive(this).attach($scope);
     $scope.subscribe('posts');
     $scope.helpers({
         posts: function () {
@@ -87,9 +86,12 @@ function ($scope, $mdDialog, $meteor, $reactive) {
     });
 
     $scope.insertPost = function () {
-        var newPostId = Collections.Posts.insert($scope.post);
-        $scope.post = {};
-        $mdDialog.hide(newPostId);
+        if ($scope.postForm.$valid) {
+            var newPostId = Collections.Posts.insert($scope.post);
+            $scope.post = {};
+            $mdDialog.hide(newPostId);
+        }
+        
     }
 
     $scope.closeDialog = function () {

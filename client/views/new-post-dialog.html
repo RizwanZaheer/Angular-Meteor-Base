@@ -10,10 +10,10 @@
         </md-toolbar>
         <md-dialog-content>
             <div class="md-dialog-content">
-                <form novalidate name="postForm">
+                <form novalidate name="postForm" ng-submit="insertPost()">
                     <md-input-container>
                         <label>Title</label>
-                        <input ng-model="post.title" required>
+                        <input ng-model="post.title" required md-autofocus>
                     </md-input-container>
                 </form>
             </div>
