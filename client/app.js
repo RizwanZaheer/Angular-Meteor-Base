@@ -9,10 +9,11 @@ App.config([
   '$locationProvider',
   '$stateProvider',
   '$urlRouterProvider',
-  function($mdIconProvider, $locationProvider, $stateProvider, $urlRouterProvider) {
+  'mdIconProvider',
+  function($mdIconProvider, $locationProvider, $stateProvider, $urlRouterProvider,mdIconProvider) {
 
     $mdIconProvider.iconSet("alert", "components/material-design-icons/sprites/svg-sprite/svg-sprite-alert.svg");
-    mdIconProvider.iconSet("av", "components/material-design-icons/sprites/svg-sprite/svg-sprite-av.svg");
+    $mdIconProvider.iconSet("av", "components/material-design-icons/sprites/svg-sprite/svg-sprite-av.svg");
     $mdIconProvider.iconSet("device", "components/material-design-icons/sprites/svg-sprite/svg-sprite-device.svg");
     $mdIconProvider.iconSet("editor", "components/material-design-icons/sprites/svg-sprite/svg-sprite-editor.svg");
     $mdIconProvider.iconSet("file", "components/material-design-icons/sprites/svg-sprite/svg-sprite-file.svg");
