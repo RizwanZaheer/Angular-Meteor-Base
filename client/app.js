@@ -9,8 +9,8 @@ App.config([
   '$locationProvider',
   '$stateProvider',
   '$urlRouterProvider',
-  'mdIconProvider',
-  function($mdIconProvider, $locationProvider, $stateProvider, $urlRouterProvider,mdIconProvider) {
+  '$mdIconProvider',
+  function($mdIconProvider, $locationProvider, $stateProvider, $urlRouterProvider,$mdIconProvider) {
 
     $mdIconProvider.iconSet("alert", "components/material-design-icons/sprites/svg-sprite/svg-sprite-alert.svg");
     $mdIconProvider.iconSet("av", "components/material-design-icons/sprites/svg-sprite/svg-sprite-av.svg");
