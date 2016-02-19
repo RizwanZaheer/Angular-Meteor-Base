@@ -11,13 +11,22 @@ App.config([
   '$urlRouterProvider',
   function($mdIconProvider, $locationProvider, $stateProvider, $urlRouterProvider) {
 
-    $mdIconProvider.iconSet("social", "/packages/planettraining_material-design-icons/bower_components/material-design-icons/sprites/svg-sprite/svg-sprite-social.svg");
-    $mdIconProvider.iconSet("action", "/packages/planettraining_material-design-icons/bower_components/material-design-icons/sprites/svg-sprite/svg-sprite-action.svg");
-    $mdIconProvider.iconSet("communication", "/packages/planettraining_material-design-icons/bower_components/material-design-icons/sprites/svg-sprite/svg-sprite-communication.svg");
-    $mdIconProvider.iconSet("content", "/packages/planettraining_material-design-icons/bower_components/material-design-icons/sprites/svg-sprite/svg-sprite-content.svg");
-    $mdIconProvider.iconSet("toggle", "/packages/planettraining_material-design-icons/bower_components/material-design-icons/sprites/svg-sprite/svg-sprite-toggle.svg");
-    $mdIconProvider.iconSet("navigation", "/packages/planettraining_material-design-icons/bower_components/material-design-icons/sprites/svg-sprite/svg-sprite-navigation.svg");
-    $mdIconProvider.iconSet("image", "/packages/planettraining_material-design-icons/bower_components/material-design-icons/sprites/svg-sprite/svg-sprite-image.svg");
+    $mdIconProvider.iconSet("alert", "components/material-design-icons/sprites/svg-sprite/svg-sprite-alert.svg");
+    mdIconProvider.iconSet("av", "components/material-design-icons/sprites/svg-sprite/svg-sprite-av.svg");
+    $mdIconProvider.iconSet("device", "components/material-design-icons/sprites/svg-sprite/svg-sprite-device.svg");
+    $mdIconProvider.iconSet("editor", "components/material-design-icons/sprites/svg-sprite/svg-sprite-editor.svg");
+    $mdIconProvider.iconSet("file", "components/material-design-icons/sprites/svg-sprite/svg-sprite-file.svg");
+    $mdIconProvider.iconSet("hardware", "components/material-design-icons/sprites/svg-sprite/svg-sprite-hardware.svg")
+    $mdIconProvider.iconSet("maps", "components/material-design-icons/sprites/svg-sprite/svg-sprite-maps.svg")
+    $mdIconProvider.iconSet("notification", "components/material-design-icons/sprites/svg-sprite/svg-sprite-notification.svg")
+    $mdIconProvider.iconSet("hardware", "components/material-design-icons/sprites/svg-sprite/svg-sprite-hardware.svg")
+    $mdIconProvider.iconSet("social", "components/material-design-icons/sprites/svg-sprite/svg-sprite-social.svg");
+    $mdIconProvider.iconSet("action", "components/material-design-icons/sprites/svg-sprite/svg-sprite-action.svg");
+    $mdIconProvider.iconSet("communication", "components/material-design-icons/sprites/svg-sprite/svg-sprite-communication.svg");
+    $mdIconProvider.iconSet("content", "components/material-design-icons/sprites/svg-sprite/svg-sprite-content.svg");
+    $mdIconProvider.iconSet("toggle", "components/material-design-icons/sprites/svg-sprite/svg-sprite-toggle.svg");
+    $mdIconProvider.iconSet("navigation", "components/material-design-icons/sprites/svg-sprite/svg-sprite-navigation.svg");
+    $mdIconProvider.iconSet("image", "components/material-design-icons/sprites/svg-sprite/svg-sprite-image.svg")
 
     // ui router
     $locationProvider.html5Mode(false);
@@ -91,7 +100,7 @@ function ($scope, $mdDialog, $meteor, $reactive) {
             $scope.post = {};
             $mdDialog.hide(newPostId);
         }
-        
+
     }
 
     $scope.closeDialog = function () {
