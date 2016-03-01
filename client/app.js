@@ -29,7 +29,7 @@ App.config([
     $mdIconProvider.iconSet("navigation", "/packages/planettraining_material-design-icons/bower_components/material-design-icons/sprites/svg-sprite/svg-sprite-navigation.svg");
     $mdIconProvider.iconSet("image", "/packages/planettraining_material-design-icons/bower_components/material-design-icons/sprites/svg-sprite/svg-sprite-image.svg")
 
-    // ui router
+      // ui router
     $locationProvider.html5Mode(false);
     $urlRouterProvider.otherwise("/");
 
