@@ -12,21 +12,27 @@
             <h2>
                 <span>Angular-meteor-base</span>
             </h2>
+            <span flex></span>
+            <login-buttons></login-buttons>
         </div>
     </md-toolbar>
 
     <md-content flex layout>
         <md-sidenav class="md-sidenav-left"
+                    ng-if="$root.currentUser"
                     md-component-id="left"
                     md-is-locked-open="$mdMedia('gt-md')"
                     md-whiteframe="4">
             <md-button ui-sref="home" ui-sref-active="md-primary">Home</md-button>
+            <md-button ui-sref="profile" ui-sref-active="md-primary">profile</md-button>
             <md-button ui-sref="blog" ui-sref-active="md-primary">Blog</md-button>
             <md-button ui-sref="projects" ui-sref-active="md-primary">projects</md-button>
             <md-button ui-sref="contact" ui-sref-active="md-primary">Contact</md-button>
         </md-sidenav>
 
-        <div flex ui-view=""></div>
+        <div flex ui-view="" class="inset"></div>
 
     </md-content>
+
+    <link rel="stylesheet" type="text/css" href="/style.css">
 </body>

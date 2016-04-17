@@ -26,3 +26,5 @@ aldeed:collection2
 ongoworks:security
 angular
 fastclick
+dotansimha:accounts-ui-angular
+accounts-password
