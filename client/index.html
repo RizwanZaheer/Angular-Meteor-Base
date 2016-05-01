@@ -1,39 +1,49 @@
 <head>
-    <title>angular-meteor-base</title>
-    <base href="/"></base>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>angular-meteor-base</title>
+  <base href="/"></base>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body ng-app="App" layout="column" layout-fill="" ng-controller="MainCtrl">
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" ng-hide="$mdMedia('gt-md') || !$root.currentUser" ng-click="$mdSidenav('left').toggle();">
-                <md-icon md-svg-icon="navigation:ic_menu_24px"></md-icon>
-            </md-button>
-            <h2>
-                <span>Angular-meteor-base</span>
-            </h2>
-            <span flex></span>
-            <login-buttons></login-buttons>
-        </div>
-    </md-toolbar>
+<body ng-app="App" layout="" layout-fill="" ng-controller="MainCtrl">
+  <md-sidenav class="md-sidenav-left"
+  ng-if="$root.currentUser"
+  md-component-id="left"
+  md-is-locked-open="$mdMedia('gt-md')"
+  md-whiteframe="4">
+  <md-toolbar class="md-accent md-tall">
+    <div class="md-toolbar-tools">
+      <h2>
+        <span>Angular-meteor-base</span>
+      </h2>
+    </div>
+  </md-toolbar>
+  <md-button ui-sref="home" ui-sref-active="md-primary">Home</md-button>
+  <md-button ui-sref="profile" ui-sref-active="md-primary">profile</md-button>
+  <md-button ui-sref="blog" ui-sref-active="md-primary">Blog</md-button>
+  <md-button ui-sref="projects" ui-sref-active="md-primary">projects</md-button>
+  <md-button ui-sref="contact" ui-sref-active="md-primary">Contact</md-button>
+</md-sidenav>
 
-    <md-content flex layout>
-        <md-sidenav class="md-sidenav-left"
-                    ng-if="$root.currentUser"
-                    md-component-id="left"
-                    md-is-locked-open="$mdMedia('gt-md')"
-                    md-whiteframe="4">
-            <md-button ui-sref="home" ui-sref-active="md-primary">Home</md-button>
-            <md-button ui-sref="profile" ui-sref-active="md-primary">profile</md-button>
-            <md-button ui-sref="blog" ui-sref-active="md-primary">Blog</md-button>
-            <md-button ui-sref="projects" ui-sref-active="md-primary">projects</md-button>
-            <md-button ui-sref="contact" ui-sref-active="md-primary">Contact</md-button>
-        </md-sidenav>
+<md-content flex="" layout="column">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" ng-hide="$mdMedia('gt-md') || !$root.currentUser" ng-click="$mdSidenav('left').toggle();">
+        <md-icon md-svg-icon="navigation:ic_menu_24px"></md-icon>
+      </md-button>
+      <h2>
+        <span>Angular-meteor-base</span>
+      </h2>
+      <span flex></span>
+      <login-buttons></login-buttons>
+    </div>
+  </md-toolbar>
 
-        <div flex ui-view="" class="inset"></div>
+  <md-content flex layout>
 
-    </md-content>
+    <div flex ui-view="" class="inset"></div>
 
-    <link rel="stylesheet" type="text/css" href="/style.css">
+  </md-content>
+
+</md-content>
+<link rel="stylesheet" type="text/css" href="/style.css">
 </body>
