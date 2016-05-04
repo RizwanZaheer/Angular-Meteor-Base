@@ -35,6 +35,11 @@ App.config(
       templateUrl: 'client/views/home.html',
       controller: 'HomeCtrl'
     })
+    .state('admin', {
+      url: '/admin',
+      templateUrl: 'client/views/admin.html',
+      controller: 'AdminCtrl'
+    })
     .state('login', {
       url: '/login',
       templateUrl: 'client/views/login.html'
@@ -79,6 +84,24 @@ App.run(
 }
 
 );
+
+App.controller('AdminCtrl', function($scope) {
+  $scope.subscribe('application');
+
+  $scope.submitApplicationForm = function() {
+    if($scope.applicationForm.$valid) {
+      Collections.Applications.update({_id: $scope.application._id },
+        {$set: $scope.application})
+      }
+    }
+
+    $scope.helpers({
+      application() {
+        return Collections.Applications.findOne({});
+      }
+    })
+
+  });
 App.controller('HomeCtrl',
 function ($scope, $mdDialog, $meteor, $reactive, $mdToast) {
   $scope.subscribe('posts');

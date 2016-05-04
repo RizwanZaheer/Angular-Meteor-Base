@@ -1,0 +1,14 @@
+<h1>
+  Application
+</h1>
+
+<form name="applicationForm" ng-submit="submitApplicationForm()" novalidate="">
+  <md-input-container>
+    <label>Name</label>
+    <input type="text" name="name" ng-model="application.name"  required="true"/>
+  </md-input-container>
+
+  <md-button ng-disabled="applicationForm.$invalid" class="md-raised" type="submit" ng-class="{'md-primary': applicationForm.$dirty && applicationForm.$valid}">
+    Save
+  </md-button>
+</form>
