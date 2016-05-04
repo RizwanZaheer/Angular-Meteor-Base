@@ -56,6 +56,10 @@ App.config(
       url: '/login',
       templateUrl: 'client/views/login.html'
     })
+    .state('forbidden', {
+      url: '/forbidden',
+      templateUrl: 'client/views/forbidden.html'
+    })
     .state('blog', {
       url: '/blog',
       templateUrl: 'client/views/blog.html'
@@ -88,9 +92,17 @@ App.run(
   function($rootScope, $state) {
     $rootScope.$on('$stateChangeError',
     function(event, toState, toParams, fromState, fromParams, error) {
-      if (error === 'AUTH_REQUIRED') {
+      switch (error) {
+        case 'FORBIDDEN':
+        $state.go('forbidden');
+        break;
+        case 'AUTH_REQUIRED':
         $state.go('login');
+        break;
+        default:
+
       }
+
     }
   );
 }
@@ -114,59 +126,59 @@ App.controller('AdminCtrl', function($scope) {
     })
 
   });
-App.controller('HomeCtrl',
-function ($scope, $mdDialog, $meteor, $reactive, $mdToast) {
-  $scope.subscribe('posts');
-  $scope.helpers({
-    posts: function () {
-      return Collections.Posts.find({});
+  App.controller('HomeCtrl',
+  function ($scope, $mdDialog, $meteor, $reactive, $mdToast) {
+    $scope.subscribe('posts');
+    $scope.helpers({
+      posts: function () {
+        return Collections.Posts.find({});
+      }
+    });
+
+    $scope.showNewPostDialog = function (ev) {
+      $mdDialog.show({
+        targetEvent: ev,
+        controller: 'NewPostCtrl',
+        templateUrl: 'client/views/new-post-dialog.html',
+      })
+      .then(function (postId) {
+
+        if (postId) {
+          $mdToast.show($mdToast.simple().textContent('Post created!'));
+        }
+
+      }, function () {
+        debugger;
+        $scope.status = 'You cancelled the dialog.';
+      });
     }
   });
 
-  $scope.showNewPostDialog = function (ev) {
-    $mdDialog.show({
-      targetEvent: ev,
-      controller: 'NewPostCtrl',
-      templateUrl: 'client/views/new-post-dialog.html',
-    })
-    .then(function (postId) {
+  App.controller('NewPostCtrl',
+  function ($scope, $mdDialog, $meteor, $reactive) {
+    $reactive(this).attach($scope);
 
-      if (postId) {
-        $mdToast.show($mdToast.simple().textContent('Post created!'));
+    $scope.post = {};
+
+    $scope.helpers({
+      posts: function () {
+        return Collections.Posts.find({});
+      }
+    });
+
+    $scope.insertPost = function () {
+      if ($scope.postForm.$valid) {
+        var newPostId = Collections.Posts.insert($scope.post);
+        $scope.post = {};
+        $mdDialog.hide(newPostId);
       }
 
-    }, function () {
-      debugger;
-      $scope.status = 'You cancelled the dialog.';
-    });
-  }
-});
-
-App.controller('NewPostCtrl',
-function ($scope, $mdDialog, $meteor, $reactive) {
-  $reactive(this).attach($scope);
-
-  $scope.post = {};
-
-  $scope.helpers({
-    posts: function () {
-      return Collections.Posts.find({});
-    }
-  });
-
-  $scope.insertPost = function () {
-    if ($scope.postForm.$valid) {
-      var newPostId = Collections.Posts.insert($scope.post);
-      $scope.post = {};
-      $mdDialog.hide(newPostId);
     }
 
+    $scope.closeDialog = function () {
+      $mdDialog.hide();
+    }
   }
-
-  $scope.closeDialog = function () {
-    $mdDialog.hide();
-  }
-}
 );
 
 
