@@ -2,7 +2,8 @@ var App = angular.module('App', [
   'angular-meteor',
   'ui.router',
   'ngMaterial',
-  'accounts.ui'
+  'accounts.ui',
+  'ngStorage'
 ]);
 
 App.config(
@@ -75,6 +76,7 @@ App.config(
     .state('profile', {
       url: '/profile',
       templateUrl: 'client/views/profile.html',
+      controller: 'ProfileCtrl',
       resolve: {
         currentUser: function($q) {
           if (Meteor.userId() === null) {
@@ -108,6 +110,9 @@ App.run(
 }
 
 );
+App.controller('ProfileCtrl', function ($scope, $localStorage) {
+  $scope.$storage = $localStorage;
+})
 
 App.controller('AdminCtrl', function($scope) {
   $scope.subscribe('application');

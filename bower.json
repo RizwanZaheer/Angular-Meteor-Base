@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "dependencies": {
     "angular-ui-router": "~0.2.15",
-    "angular-material": "master"
+    "angular-material": "master",
+    "ngstorage": "^0.3.10"
   },
   "ignoredDependencies": [
     "jquery",
