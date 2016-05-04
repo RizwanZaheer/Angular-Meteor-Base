@@ -42,7 +42,7 @@ App.config(
       resolve: {
         currentUser($meteor, $q) {
           return $meteor.requireUser().then(function(user) {
-            if(!_.contains(user.roles, 'adminn')) {
+            if(!_.contains(user.roles, 'admin')) {
               // fail the promise chain
               return $q.reject('FORBIDDEN');
             }
@@ -86,7 +86,6 @@ App.config(
 
 App.run(
   function($rootScope, $state) {
-    $rootScope.subscribe('users')
     $rootScope.$on('$stateChangeError',
     function(event, toState, toParams, fromState, fromParams, error) {
       if (error === 'AUTH_REQUIRED') {
