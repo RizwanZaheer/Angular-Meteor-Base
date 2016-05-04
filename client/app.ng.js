@@ -38,7 +38,19 @@ App.config(
     .state('admin', {
       url: '/admin',
       templateUrl: 'client/views/admin.html',
-      controller: 'AdminCtrl'
+      controller: 'AdminCtrl',
+      resolve: {
+        currentUser($meteor, $q) {
+          return $meteor.requireUser().then(function(user) {
+            if(!_.contains(user.roles, 'adminn')) {
+              // fail the promise chain
+              return $q.reject('FORBIDDEN');
+            }
+            // keep the success promise chain
+            return user;
+          });
+        }
+      }
     })
     .state('login', {
       url: '/login',
@@ -74,6 +86,7 @@ App.config(
 
 App.run(
   function($rootScope, $state) {
+    $rootScope.subscribe('users')
     $rootScope.$on('$stateChangeError',
     function(event, toState, toParams, fromState, fromParams, error) {
       if (error === 'AUTH_REQUIRED') {

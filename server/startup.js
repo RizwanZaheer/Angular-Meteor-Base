@@ -1,9 +1,15 @@
 Meteor.startup(function() {
+  var isNewApplication = false;
+  isNewApplication = Meteor.users.find().count() === 0
+  && Collections.Applications.find({}).fetch().length < 1;
 
-  // check if there is a application created already
+  if(isNewApplication) {
+    addDefaultAdminUser();
+    createDefaultApplication();
+  }
 
-  if(Collections.Applications.find({}).fetch().length < 1) {
-    // create new Applications
+  function createDefaultApplication() {
+
     console.log('creating new application..');
 
     var application = {
@@ -18,6 +24,23 @@ Meteor.startup(function() {
         console.log('successfully created application');
       }
     });
+
+  }
+
+  function addDefaultAdminUser () {
+    console.log('Creating default admin user');
+    var id= Accounts.createUser({
+      username: 'admin',
+      email: 'admin@test.com',
+      password: 'welcome',
+      profile: {
+        first_name: 'Mustafa',
+        last_name: 'Hossaini',
+        company: 'My own company',
+      }
+    });
+
+    Roles.addUsersToRoles(id, ['admin']);
 
   }
 })
