@@ -5,6 +5,7 @@
     "angular-ui-router": "~0.2.15",
     "angular-material": "master",
     "ngstorage": "^0.3.10"
+    "angular-gridster": "^0.13.5"
   },
   "ignoredDependencies": [
     "jquery",
