@@ -3,7 +3,8 @@ var App = angular.module('App', [
   'ui.router',
   'ngMaterial',
   'accounts.ui',
-  'ngStorage'
+  'ngStorage',
+  'gridster'
 ]);
 
 App.config(
@@ -132,8 +133,45 @@ App.controller('AdminCtrl', function($scope) {
 
   });
   App.controller('HomeCtrl',
-  function ($scope, $mdDialog, $meteor, $reactive, $mdToast) {
-    $scope.subscribe('posts');
+  function ($scope, $mdDialog, $meteor, $reactive, $mdToast,$timeout) {
+
+    $timeout(function () {
+
+      var resizeElement = document.getElementById('content'),
+      resizeCallback = function() {
+        /* do something */
+        $scope.gridsterOpts.rowHeight= ($('#content').outerHeight()-10)/3;
+      };
+      addResizeListener(resizeElement, resizeCallback)
+    },0);
+
+    $scope.gridsterOpts = {
+      columns: 6, // the width of the grid, in columns
+      rows:3,
+      isMobile: false, // stacks the grid items if true
+      mobileModeEnabled: false,
+      outerMargin: false,
+      resizable: {
+        enabled: false
+      },
+      draggable: {
+        enabled: false
+      }
+    };
+    $scope.customItems = [
+      { size: { x: 2, y: 1 }, position: [0, 0] },
+      { size: { x: 2, y: 2 }, position: [0, 2] },
+      { size: { x: 1, y: 1 }, position: [0, 4] },
+      { size: { x: 1, y: 1 }, position: [0, 5] },
+      { size: { x: 2, y: 1 }, position: [1, 0] },
+      { size: { x: 1, y: 1 }, position: [1, 4] },
+      { size: { x: 1, y: 2 }, position: [1, 5] },
+      { size: { x: 1, y: 1 }, position: [2, 0] },
+      { size: { x: 2, y: 1 }, position: [2, 1] },
+      { size: { x: 1, y: 1 }, position: [2, 3] },
+      { size: { x: 1, y: 1 }, position: [2, 4] }
+    ];
+
     $scope.helpers({
       posts: function () {
         return Collections.Posts.find({});
