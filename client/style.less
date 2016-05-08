@@ -1,13 +1,42 @@
-@paneBackgroundColor: gray;
+@paneBackgroundColor: white;
+@paneBorderColor:#DDDDDD;
+@dashboardScrollBarColor: #3F51B5;
+@viewBackgroundColor: #F4F5F6;
+
+// variables for scroll bar for the dashboard widgets
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+  display: none;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-left: 1px solid @viewBackgroundColor;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0,0,0,0.2);
+}
 .gridster-loaded .gridster-item {
   background-color: @paneBackgroundColor;
+  border: 1px none @paneBorderColor;
+  box-sizing: border-box;
 }
 
-.noSelect {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Chrome/Safari/Opera */
-    -khtml-user-select: none; /* Konqueror */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently not supported by any browser */
+#content {
+  overflow: hidden;
+  padding-right: 0;
+  padding-bottom: 0;
+  background-color: @viewBackgroundColor;
+}
+.scroll-wrapper {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 0px;
+  bottom: 0px;
+  overflow: scroll;
 }

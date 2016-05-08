@@ -1,10 +1,10 @@
 <head>
   <title>angular-meteor-base</title>
   <base href="/"></base>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=device-dpi, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body ng-app="App" class="noSelect"layout="" layout-fill="" ng-controller="MainCtrl">
+<body ng-app="App" layout="" layout-fill="" ng-controller="MainCtrl">
   <md-sidenav class="md-sidenav-left"
   ng-if="$root.currentUser"
   md-component-id="left"
@@ -40,11 +40,7 @@
     </div>
   </md-toolbar>
 
-  <md-content flex layout>
-
-    <div id="content" flex ui-view="" class="inset"></div>
-
-  </md-content>
+  <div id="content" flex ui-view="" class="inset"></div>
 
 </md-content>
 <link rel="stylesheet" type="text/css" href="/style.css">

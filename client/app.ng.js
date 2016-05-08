@@ -4,7 +4,8 @@ var App = angular.module('App', [
   'ngMaterial',
   'accounts.ui',
   'ngStorage',
-  'gridster'
+  'gridster',
+  'ngAnimate'
 ]);
 
 App.config(
@@ -146,16 +147,16 @@ App.controller('AdminCtrl', function($scope) {
     },0);
 
     $scope.gridsterOpts = {
-      columns: 6, // the width of the grid, in columns
+      columns: 6,
       rows:3,
       isMobile: false, // stacks the grid items if true
       mobileModeEnabled: false,
       outerMargin: false,
       resizable: {
-        enabled: false
+        enabled: true
       },
       draggable: {
-        enabled: false
+        enabled: true
       }
     };
     $scope.customItems = [
