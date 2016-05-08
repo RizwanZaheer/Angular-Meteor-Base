@@ -26,7 +26,7 @@
 
 </md-sidenav>
 
-<md-content flex="" layout="column">
+<div flex="" layout="column">
   <md-toolbar>
     <div class="md-toolbar-tools">
       <md-button class="md-icon-button" ng-hide="$mdMedia('gt-md') || !$root.currentUser" ng-click="$mdSidenav('left').toggle();">
@@ -40,8 +40,8 @@
     </div>
   </md-toolbar>
 
-  <div id="content" flex ui-view="" class="inset"></div>
+  <div id="content" flex ui-view=""></div>
 
-</md-content>
+</div>
 <link rel="stylesheet" type="text/css" href="/style.css">
 </body>
